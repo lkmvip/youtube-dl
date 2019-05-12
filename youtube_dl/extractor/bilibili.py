@@ -93,8 +93,8 @@ class BiliBiliIE(InfoExtractor):
         }]
     }]
 
-    _APP_KEY = '84956560bc028eb7'
-    _BILIBILI_KEY = '94aba54af9065f71de72f5508f1cd42e'
+    _APP_KEY = 'iVGUTjsxvpLeuDCf'
+    _BILIBILI_KEY = 'aHRmhWMLkdeMuILqORnYZocwMBpMEOdt'
 
     def _report_error(self, result):
         if 'message' in result:
@@ -114,12 +114,12 @@ class BiliBiliIE(InfoExtractor):
 
         if 'anime/' not in url:
             cid = self._search_regex(
-                r'cid(?:["\']:|=)(\d+)', webpage, 'cid',
+                r'\bcid(?:["\']:|=)(\d+)', webpage, 'cid',
                 default=None
             ) or compat_parse_qs(self._search_regex(
-                [r'1EmbedPlayer\([^)]+,\s*"([^"]+)"\)',
-                 r'1EmbedPlayer\([^)]+,\s*\\"([^"]+)\\"\)',
-                 r'1<iframe[^>]+src="https://secure\.bilibili\.com/secure,([^"]+)"'],
+                [r'EmbedPlayer\([^)]+,\s*"([^"]+)"\)',
+                 r'EmbedPlayer\([^)]+,\s*\\"([^"]+)\\"\)',
+                 r'<iframe[^>]+src="https://secure\.bilibili\.com/secure,([^"]+)"'],
                 webpage, 'player parameters'))['cid'][0]
         else:
             if 'no_bangumi_tip' not in smuggled_data:
